@@ -1,0 +1,27 @@
+.menuContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.menuList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.menuLink {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menuLink:hover {
+    background-color: #0056b3;
+}

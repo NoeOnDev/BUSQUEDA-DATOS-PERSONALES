@@ -1,0 +1,81 @@
+.container {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 1rem;
+}
+
+.tableStyle {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tableStyle th {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ccc;
+    color: #666;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+
+.tableStyle td {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}
+
+.tableStyle tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.tableStyle tr:hover {
+    background-color: #ddd;
+}
+
+.inputStyle {
+    margin: 10px 0;
+    margin-bottom: 2rem;
+    padding: 12px;
+    width: 400px;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    border: 4.5px solid #0000;
+    border-radius: 50%;
+    border-color: #dbdcef #0000;
+    animation: spinner-e04l1k 1s infinite linear;
+  }
+  
+  .spinner::before,
+  .spinner::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 2.2px;
+    border: inherit;
+    border-radius: 50%;
+  }
+  
+  .spinner::before {
+    border-color: #474bff #0000;
+    animation: inherit;
+    animation-duration: 0.5s;
+    animation-direction: reverse;
+  }
+  
+  .spinner::after {
+    margin: 8.9px;
+  }
+  
+  @keyframes spinner-e04l1k {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
