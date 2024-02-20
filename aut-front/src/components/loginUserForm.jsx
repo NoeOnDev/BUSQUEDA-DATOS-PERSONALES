@@ -30,18 +30,16 @@ function LoginUserForm() {
     };
 
     return (
-        <div>
+        <div className={styles.container}>
             <ToastContainer />
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Email:
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </label>
-                <button type="submit">Login</button>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <div className={styles.inputContainer}>
+                    <input type="email"  placeholder="ingrese su email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                </div>
+                <div className={styles.inputContainer}>
+                    <input type="password" placeholder="ingrese su contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                </div>
+                <button className={styles.submit} type="submit">Login</button>
             </form>
         </div>
     );
