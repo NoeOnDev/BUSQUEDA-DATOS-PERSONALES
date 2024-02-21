@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import styles from "../assets/css/authStyle.module.css";
 
 function LoginUserForm() {
   const [email, setEmail] = useState("");
@@ -87,16 +88,21 @@ function LoginUserForm() {
   };
 
   return(
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+    <div className={styles.contaier}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+      <span className={styles.title}>Login</span>
+      <label className={styles.label}>Email</label>
       <input 
+      className={styles.input}
         type="email" 
         placeholder="Email" 
         value={email} 
         onChange={(e) => setEmail(e.target.value)} 
       />
       {emailError && <p>{emailError}</p>}
+      <label className={styles.label}>Password</label>
       <input 
+      className={styles.input}
         type="password" 
         placeholder="Password" 
         value={password} 
@@ -104,9 +110,10 @@ function LoginUserForm() {
       />
       {passwordError && <p>{passwordError}</p>}
       {generalError && <p>{generalError}</p>}
-      <Link to="/register">Register</Link>
-      <button type="submit" disabled={isLoading}>Login</button>
+      <Link to="/register">Registro</Link>
+      <button type="submit" disabled={isLoading}>Register</button>
     </form>
+    </div>
   );
 }
 

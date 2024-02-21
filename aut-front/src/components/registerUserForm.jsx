@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import styles from "../assets/css/authStyle.module.css";
 
 function RegisterUserForm() {
   const [email, setEmail] = useState("");
@@ -87,7 +88,8 @@ function RegisterUserForm() {
   };
 
   return(
-    <form onSubmit={handleSubmit}>
+    <div className={styles.contaier}>
+      <form onSubmit={handleSubmit}>
       <h2>Register</h2>
       <input 
         type="email" 
@@ -107,6 +109,7 @@ function RegisterUserForm() {
       <Link to="/">Login</Link>
       <button type="submit" disabled={isLoading}>Register</button>
     </form>
+    </div>
   );
 }
 
