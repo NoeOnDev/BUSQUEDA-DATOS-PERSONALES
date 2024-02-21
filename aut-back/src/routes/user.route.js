@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { registerUser, loginUser } from '../controllers/user.controller.js';
-import { registerUserValidation } from '../validator/user.validator.js';
+import { registerAndLoginUserValidation } from '../validator/user.validator.js';
 
 const r = Router();
 
-r.post('/register', registerUserValidation, registerUser);
-r.post('/login', registerUserValidation, loginUser);
+r.post('/register', registerAndLoginUserValidation, registerUser);
+r.post('/login', registerAndLoginUserValidation, loginUser);
 
 export default r;

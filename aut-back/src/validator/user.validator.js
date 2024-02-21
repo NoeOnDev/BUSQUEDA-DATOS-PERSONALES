@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const registerUserValidation = [
+export const registerAndLoginUserValidation = [
     body('email')
         .notEmpty()
         .withMessage('El email es obligatorio')
