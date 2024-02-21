@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function RegisterUserForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [generalError, setGeneralError] = useState(""); // Estado para errores generales
+  const [generalError, setGeneralError] = useState("")
   const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate();
 
@@ -104,6 +104,7 @@ function RegisterUserForm() {
       />
       {passwordError && <p>{passwordError}</p>}
       {generalError && <p>{generalError}</p>}
+      <Link to="/">Login</Link>
       <button type="submit" disabled={isLoading}>Register</button>
     </form>
   );
