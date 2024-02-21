@@ -15,7 +15,14 @@ function SearchEmailForm() {
             if (query.length >= 1) {
                 setLoading(true);
                 try {
-                    const response = await fetch(`http://localhost:3000/people/search/email?query=${query}`, { signal: abortController.signal });
+                    const token = localStorage.getItem('token');
+                    const response = await fetch(`http://localhost:3000/people/search/email?query=${query}`, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            },
+                            signal: abortController.signal 
+                        });
                     if (response.status === 404) {
                         toast.error(`No se encontraron personas con el correo "${query}"`);
                         setResults([]);

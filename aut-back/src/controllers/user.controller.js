@@ -17,7 +17,8 @@ export async function registerUser(req, res) {
             return res.status(409).json({ message: 'El email ya está en uso. Por favor, elige otro email.' });
         }
         const user = await User.create({ email, password });
-        res.json(user);
+        const token = jwt.sign({ id: user.id, email: user.email }, 'algotranqui', { expiresIn: '6h' });
+        res.status(201).json({ message: 'Usuario registrado con éxito', token });
     } catch (error) {
         res.status(500).json({ message: 'Hubo un problema al registrar al usuario. Por favor, inténtalo de nuevo más tarde', error: error.message });
     }

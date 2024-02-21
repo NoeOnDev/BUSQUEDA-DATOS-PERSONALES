@@ -76,6 +76,7 @@ function RegisterUserForm() {
       if (!response.ok) {
         setGeneralError(data.message || "Error al registrarse. Intente de nuevo.");
       } else {
+        localStorage.setItem('token', data.token);
         navigate('/home');
       }
     } catch (error) {
