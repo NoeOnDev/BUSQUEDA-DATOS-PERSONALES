@@ -14,7 +14,7 @@ export async function registerUser(req, res) {
         const user = await User.create(req.body);
         res.json(user);
     } catch (error) {
-        res.status(500).json({ message: 'Error interno del servidor de registro de usuarios', error: error.message });
+        res.status(500).json({ message: 'Hubo un problema al registrar al usuario. Por favor, inténtalo de nuevo más tarde', error: error.message });
     }
 }
 
@@ -40,6 +40,6 @@ export async function loginUser(req, res) {
         const token = jwt.sign({ id: user.id, email: user.email }, 'algotranqui', { expiresIn: '6h' });
         res.json({ message: 'Usuario logueado con éxito', token });
     } catch (error) {
-        res.status(500).json({ message: 'Error interno del servidor de inicio de sesión de usuarios', error: error.message });
+        res.status(500).json({ message: 'Hubo un problema al intentar completar su inicio de sesión. Por favor, inténtalo de nuevo más tarde', error: error.message });
     }
 }
