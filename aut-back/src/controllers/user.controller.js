@@ -11,7 +11,12 @@ export async function registerUser(req, res) {
     }
 
     try {
-        const user = await User.create(req.body);
+        const  { email, password } = req.body;
+        const existingUser = await User.findOne({ where: { email: email } });
+        if (existingUser) {
+            return res.status(409).json({ message: 'El email ya está en uso. Por favor, elige otro email.' });
+        }
+        const user = await User.create({ email, password });
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: 'Hubo un problema al registrar al usuario. Por favor, inténtalo de nuevo más tarde', error: error.message });

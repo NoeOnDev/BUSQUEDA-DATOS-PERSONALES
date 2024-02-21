@@ -56,7 +56,7 @@ function SearchForm() {
             <form onSubmit={(e) => e.preventDefault()}>
                 <input className={styles.inputStyle} type="text" placeholder='Ingrese un nombre de contacto' value={query} onChange={handleChange} />
             </form>
-            {loading ? <div class={styles.spinner}></div> : (
+            {loading ? <div className={styles.spinner}></div> : (
                 <table className={styles.tableStyle}>
                     <thead>
                         <tr>

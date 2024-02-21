@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RegisterUserForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [generalError, setGeneralError] = useState(""); // Estado para errores generales
+  const [isLoading, setIsLoading] = useState(false); 
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -35,40 +39,51 @@ function RegisterUserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setEmailError("");
+    setPasswordError("");
+    setGeneralError("");
 
     if (email === "") {
       setEmailError("El campo de correo electrónico no puede estar vacío");
+      setIsLoading(false);
       return;
     }
 
     if (!validateEmail(email)) {
       setEmailError("Por favor, introduce un correo electrónico válido");
+      setIsLoading(false);
       return;
     }
 
     const passwordValidationMessage = validatePassword(password);
     if (passwordValidationMessage !== "") {
       setPasswordError(passwordValidationMessage);
+      setIsLoading(false);
       return;
     }
 
-    setEmailError("");
-    setPasswordError("");
+    try {
+      const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
 
-    const response = await fetch('http://localhost:3000/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    });
-
-    if (response.ok) {
       const data = await response.json();
-    } else {
-      const data = await response.json();
+      if (!response.ok) {
+        setGeneralError(data.message || "Error al registrarse. Intente de nuevo.");
+      } else {
+        navigate('/home');
+      }
+    } catch (error) {
+      setGeneralError("Error al conectarse al servidor. Por favor, intente más tarde.");
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
 
   return(
     <form onSubmit={handleSubmit}>
@@ -86,7 +101,8 @@ function RegisterUserForm() {
         onChange={(e) => setPassword(e.target.value)} 
       />
       {passwordError && <p>{passwordError}</p>}
-      <button type="submit">Register</button>
+      {generalError && <p>{generalError}</p>}
+      <button type="submit" disabled={isLoading}>Register</button>
     </form>
   );
 }
