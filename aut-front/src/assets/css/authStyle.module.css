@@ -71,6 +71,12 @@ body {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
   }
+
+  .error {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
       
       
       

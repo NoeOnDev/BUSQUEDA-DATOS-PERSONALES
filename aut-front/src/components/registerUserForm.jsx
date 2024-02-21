@@ -88,26 +88,30 @@ function RegisterUserForm() {
   };
 
   return(
-    <div className={styles.contaier}>
-      <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+      <span className={styles.title}>Register</span>
+      <label className={styles.label}>Email</label>
       <input 
+      className={styles.input}
         type="email" 
         placeholder="Email" 
         value={email} 
         onChange={(e) => setEmail(e.target.value)} 
       />
-      {emailError && <p>{emailError}</p>}
+      {emailError && <p className={styles.error}>{emailError}</p>}
+      <label className={styles.label}>Password</label>
       <input 
+      className={styles.input}
         type="password" 
         placeholder="Password" 
         value={password} 
         onChange={(e) => setPassword(e.target.value)} 
       />
-      {passwordError && <p>{passwordError}</p>}
-      {generalError && <p>{generalError}</p>}
-      <Link to="/">Login</Link>
-      <button type="submit" disabled={isLoading}>Register</button>
+      {passwordError && <p className={styles.error}>{passwordError}</p>}
+      {generalError && <p className={styles.error}> {generalError}</p>}
+      <p>Ya tiene una cuenta? <Link to="/">Login</Link></p>
+      <button type="submit" className={styles.submit} disabled={isLoading}>Register</button>
     </form>
     </div>
   );

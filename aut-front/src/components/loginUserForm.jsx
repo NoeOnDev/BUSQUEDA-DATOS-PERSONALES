@@ -99,7 +99,7 @@ function LoginUserForm() {
         value={email} 
         onChange={(e) => setEmail(e.target.value)} 
       />
-      {emailError && <p>{emailError}</p>}
+      {emailError && <p className={styles.error}>{emailError}</p>}
       <label className={styles.label}>Password</label>
       <input 
       className={styles.input}
@@ -108,10 +108,10 @@ function LoginUserForm() {
         value={password} 
         onChange={(e) => setPassword(e.target.value)} 
       />
-      {passwordError && <p>{passwordError}</p>}
-      {generalError && <p>{generalError}</p>}
-      <Link to="/register">Registro</Link>
-      <button type="submit" className={styles.submit} disabled={isLoading}>Register</button>
+      {passwordError && <p className={styles.error}>{passwordError}</p>}
+      {generalError && <p className={styles.error}> {generalError}</p>}
+      <p>Aun no te has registrado? <Link to="/register">Register</Link></p>
+      <button type="submit" className={styles.submit} disabled={isLoading}>Login</button>
     </form>
     </div>
   );
