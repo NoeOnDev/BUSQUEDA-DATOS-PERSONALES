@@ -88,7 +88,7 @@ function LoginUserForm() {
   };
 
   return(
-    <div className={styles.contaier}>
+    <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
       <span className={styles.title}>Login</span>
       <label className={styles.label}>Email</label>
@@ -111,7 +111,7 @@ function LoginUserForm() {
       {passwordError && <p>{passwordError}</p>}
       {generalError && <p>{generalError}</p>}
       <Link to="/register">Registro</Link>
-      <button type="submit" disabled={isLoading}>Register</button>
+      <button type="submit" className={styles.submit} disabled={isLoading}>Register</button>
     </form>
     </div>
   );
