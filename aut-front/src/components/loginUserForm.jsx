@@ -10,22 +10,31 @@ function LoginUserForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            toast.success('Inicio de sesión exitoso');
-            setTimeout(() => { navigate('/home'); }, 1500);
-        } else {
-            toast.error(data.message);
+    
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                toast.success('Inicio de sesión exitoso');
+                setTimeout(() => { navigate('/home'); }, 1500);
+            } else {
+                // Accede al primer mensaje de error y muéstralo con un toast
+                if (data.errors && data.errors.length > 0) {
+                    toast.error(data.errors[0].msg);
+                } else {
+                    toast.error('Ocurrió un error desconocido');
+                }
+            }
+        } catch (error) {
+            toast.error('Ocurrió un error al intentar iniciar sesión');
         }
     };
 
