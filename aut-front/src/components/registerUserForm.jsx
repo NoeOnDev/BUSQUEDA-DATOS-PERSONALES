@@ -88,6 +88,7 @@ function RegisterUserForm() {
 
   return(
     <form onSubmit={handleSubmit}>
+      <h2>Register</h2>
       <input 
         type="email" 
         placeholder="Email" 
